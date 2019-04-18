@@ -21,13 +21,13 @@ public class HtmlUnitTest_02 {
 
     public static void main(String[] args) {
 //        new HtmlUnitTest_02().doLoginMethodOne();
-        new HtmlUnitTest_02().doLoginMethodSecond();
-//        new HtmlUnitTest_02().doLoginMethodThird();
+//        new HtmlUnitTest_02().doLoginMethodSecond();
+        new HtmlUnitTest_02().doLoginMethodThird();
 
 
     }
 
-    /*
+
     public static String getPageSource(Page page) {
         if (page instanceof HtmlPage) {
             return ((HtmlPage) page).asXml();
@@ -44,6 +44,7 @@ public class HtmlUnitTest_02 {
         }
     }
 
+    /*
     private void doLoginMethodOne() {
         try {
             String username = "";
@@ -85,7 +86,7 @@ public class HtmlUnitTest_02 {
     }
     */
 
-
+/*
     private void doLoginMethodSecond() {
         try {
             String id = "";
@@ -120,32 +121,43 @@ public class HtmlUnitTest_02 {
             ex.printStackTrace();
         }
     }
+*/
 
-    /*
     private void doLoginMethodThird() {
         try {
-            String userName = "사용자 이름";
-            String userPassword = "your password";
+            String id = "";
+            String pw = "";
 
+            WebClient webClient = new WebClient();
+
+            // for local testing
+            ProxyConfig proxyConfig = new ProxyConfig();
+            proxyConfig.setProxyHost("127.0.0.1");
+            proxyConfig.setProxyPort(8080);
+            webClient.getOptions().setProxyConfig(proxyConfig);
 
             webClient.getOptions().setThrowExceptionOnScriptError(false);
             webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
             webClient.getOptions().setJavaScriptEnabled(false);
 
             // 사이트 URL 설정
-            HtmlPage page = (HtmlPage) webClient.getPage("http://scrapemania.blogspot.in/login");
-            HtmlForm form = page.getFormByName("loginform");
-            form.getInputByName("사용자 이름").setValueAttribute(사용자 이름);
-            HtmlInput passWordInput = form.getInputByName("password");
-            passWordInput.removeAttribute("disabled");
-            passWordInput.setValueAttribute("userPassword");
+            Page page = webClient.getPage("https://forest.skhu.ac.kr/Gate/UniLogin.aspx");
+            WebResponse response = page.getWebResponse();
+            String content = response.getContentAsString();
 
-            page = form.getInputByValue("login").click();
-            String Stringpage = page.getWebResponse().getContentAsString();
-            System.out.println(Stringpage);
+//            HtmlForm form = content.getFormByName("loginform");
+//            form.getInputByName("사용자 이름").setValueAttribute(사용자 이름);
+//            HtmlInput passWordInput = form.getInputByName("password");
+//            passWordInput.removeAttribute("disabled");
+//            passWordInput.setValueAttribute("userPassword");
+
+//            page = form.getInputByValue("login").click();
+//            String Stringpage = page.getWebResponse().getContentAsString();
+
+            System.out.println("11 " + content);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    */
+
 }
