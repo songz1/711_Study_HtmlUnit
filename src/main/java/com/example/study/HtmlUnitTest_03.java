@@ -20,11 +20,13 @@ public class HtmlUnitTest_03 {
 
             HtmlTextInput inputId = page.getFirstByXPath("//*[@id=\"id\"]"); // ID 입력 필드
             HtmlPasswordInput inputPassword = page.getFirstByXPath("//*[@id=\"pw\"]"); // 암호 입력 필드
-            HtmlImageInput inputSubmit = page.getFirstByXPath("//*[@id=\"frmNIDLogin\"]/fieldset/input"); // 로그인버튼
+//            HtmlImageInput inputSubmit = page.getFirstByXPath("//*[@id=\"frmNIDLogin\"]/fieldset/input"); // 로그인버튼
+            HtmlSubmitInput submitBtn = page.getFirstByXPath("//*[@id=\"frmNIDLogin\"]/fieldset/input"); // 로그인버튼
 
             inputId.setText(id); // ID 입력
             inputPassword.setText(password); // 비밀번호 입력
-            inputSubmit.click(); // 로그인 버튼 클릭
+//            inputSubmit.click(); // 로그인 버튼 클릭
+            page = submitBtn.click();
         }
 
         {
