@@ -16,8 +16,8 @@ public class HtmlUnitTest_04 {
             HtmlPage page = webClient.getPage("https://forest.skhu.ac.kr/Gate/UniLogin.aspx");
 
             HtmlForm form = page.getFormByName("form1");
-            form.getInputByName("txtID").setValueAttribute("201532020");
-            HtmlInput passWordInput = form.getInputByName("9wldsl9^^");
+            form.getInputByName("txtID").setValueAttribute("");
+            HtmlInput passWordInput = form.getInputByName("");
             passWordInput.removeAttribute("txtPW");
             passWordInput.setValueAttribute("txtPW");
 
