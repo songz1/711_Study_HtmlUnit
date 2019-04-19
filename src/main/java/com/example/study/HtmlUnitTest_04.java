@@ -3,11 +3,11 @@ package com.example.study;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+//import org.openqa.selenium.By;
+//import org.openqa.selenium.Keys;
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class HtmlUnitTest_04 {
     public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class HtmlUnitTest_04 {
 
 //            WebDriver driver = new HtmlUnitDriver(false);
 //            WebElement pw = driver.findElement(By.id(inputId));
-//            pw.sendKeys("9wldsl9^^");
+//            pw.sendKeys("");
 //            pw.sendKeys(Keys.ENTER);
 
             System.out.println("1: "+page.asText());
