@@ -19,6 +19,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     compile 'net.sourceforge.htmlunit:htmlunit:2.34.1'
-   
+
     testCompile "junit:junit:4.12"
 }
