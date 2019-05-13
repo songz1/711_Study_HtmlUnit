@@ -25,20 +25,20 @@ public class HtmlUnitTest_08 {
 
 			webClient.getOptions().setUseInsecureSSL(true);
 			HtmlPage loginPage = webClient.getPage(loginPageUrl);
-			CookieManager cm = webClient.getCookieManager();
-			cm.clearCookies();
+			/*CookieManager cm = webClient.getCookieManager();
+			cm.clearCookies();*/
 
 			HtmlForm loginForm = loginPage.getFormByName("");
 			loginForm.getInputByName("txtID").setValueAttribute(idPw.getId());
 			loginForm.getInputByName("txtPW").setValueAttribute(idPw.getPw());
 			HtmlPage mainPage = loginForm.getInputByName("ibtnLogin").click();
 
-			Cookie authCookie = cm.getCookie(".AuthCookie");
+			/*Cookie authCookie = cm.getCookie(".AuthCookie");
 			Cookie uniCookie = cm.getCookie("UniCookie");
 			cm.addCookie(authCookie);
 			cm.addCookie(uniCookie);
 			System.out.println("@@@@@@@");
-			System.out.println(cm.getCookies());
+			System.out.println(cm.getCookies());*/
 
 
 
@@ -65,7 +65,9 @@ public class HtmlUnitTest_08 {
 //					}
 //				}
 
-
+			}
+			else {
+				System.out.println("false!!!!!!!!!!!!!!");
 			}
 
 
