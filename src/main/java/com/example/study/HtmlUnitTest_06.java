@@ -22,12 +22,13 @@ public class HtmlUnitTest_06 {
             form.getInputByName("txtPW").setValueAttribute(idPw.getPw());
 
             HtmlPage homepage = form.getInputByName("ibtnLogin").click();
-//            System.out.println("===========================TEST 1===========================");
+            System.out.println("===========================TEST 1===========================");
 //            System.out.println(page.asText());
 
-            HtmlPage page2 = webClient.getPage("https://forest.skhu.ac.kr/Gate/SAM/Lesson/G/SSEG20P.aspx?&maincd=O&systemcd=S&seq=100");
-            System.out.println("===========================TEST 2===========================");
-            System.out.println(page2.asText());
+            System.out.println(homepage.asXml());
+//            HtmlPage page2 = webClient.getPage("https://forest.skhu.ac.kr/Gate/SAM/Lesson/G/SSEG20P.aspx?&maincd=O&systemcd=S&seq=100");
+//            System.out.println("===========================TEST 2===========================");
+//            System.out.println(page2.asText());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

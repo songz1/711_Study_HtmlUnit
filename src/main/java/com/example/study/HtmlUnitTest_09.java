@@ -8,12 +8,13 @@ import java.util.logging.Logger;
 
 import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.html.*;
+import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptJobManager;
 
 public class HtmlUnitTest_09 {
-	public static void main(String[] args)  throws Exception, FailingHttpStatusCodeException, MalformedURLException, IOException {
-		HtmlPage  framePage1,framePage2;
+	public static void main(String[] args) throws Exception, FailingHttpStatusCodeException, MalformedURLException, IOException {
+		HtmlPage framePage1, framePage2;
 
-		HtmlElement buildingTable,lectreRoomTable;
+		HtmlElement buildingTable, lectreRoomTable;
 		HtmlElement button1, button2, button3, button4, button5, button6, button7, button8, button9, button10;
 
 		String s;
@@ -25,6 +26,7 @@ public class HtmlUnitTest_09 {
 		webClient.getOptions().setUseInsecureSSL(true);
 		webClient.getOptions().setJavaScriptEnabled(false);
 		webClient.getOptions().setCssEnabled(false);
+
 		HtmlPage page = webClient.getPage("https://forest.skhu.ac.kr/Gate/UniLogin.aspx");
 		HtmlForm form = page.getFormByName("");
 		form.getInputByName("txtID").setValueAttribute("");
@@ -33,7 +35,27 @@ public class HtmlUnitTest_09 {
 		System.out.println("Login Success");
 
 		//시설물 대여 페이지로
-		HtmlPage page2 = webClient.getPage("https://forest.skhu.ac.kr/Gate/SAM/Lesson/G/SSEG20P.aspx?maincd=0&systemcd=S&seq=100");
+//		HtmlPage page2 = webClient.getPage("https://forest.skhu.ac.kr/Gate/SAM/Lesson/G/SSEG20P.aspx?maincd=0&systemcd=S&seq=100");
+//		HtmlAnchor frame = (HtmlAnchor) homepage.getFirstByXPath("//frame[@name='mainFrame']/html/frameset/frame[@name='leftFrame']/html/body/form[@id='Left_Menu']/div[@class='MenuDiv']/span[@id='menu']/table/tbody/tr[1]/td[@class='leftmenuMargin1 | color1']/span[@class='leftmenu']/a");
+//		HtmlPage test = frame.click();
+//		List<HtmlFrame> frames = homepage.getByXPath("//frameset[@id='frm']/frame[@name='mainFrame']/html/frameset");
+//		HtmlFrame frame = frames.get(0);
+//		System.out.println(frame);
+
+		HtmlPage mainFrame = homepage.getFrameByName("mainFrame").getEnclosingPage();
+		HtmlPage tee = mainFrame.getFrameByName("leftFrame").getEnclosingPage();
+		System.out.println(tee.asXml());
+
+//		HtmlPage left = webClient.getPage("https://forest.skhu.ac.kr/Gate/UniLeftMenuOneStop.aspx?sabeon=6noZSllCqeCuoq8pCW0jEQCu%2fKHBu5Ix&maincd=&systemcd=");
+//
+//		HtmlAnchor a0 = left.getAnchorByHref("https://forest.skhu.ac.kr/Gate/SAM/Lesson/G/SSEG20P.aspx?&maincd=O&systemcd=S&seq=100");
+//		left = a0.click();
+//		System.out.println("test " + left.asXml());
+//		HtmlAnchor a0 = (HtmlAnchor) homepage.getByXPath("//form[@id='Left_Menu']/div[@class='MenuDiv']/span[@id='menu']/table/tbody/tr/td/span[@class='leftmenu']/a").get(0);
+//		HtmlPage p3 = a0.click();
+//		HtmlAnchor a1 = homepage.getAnchorByHref("https://forest.skhu.ac.kr/Gate/UniLeftMenuOneStop.aspx?sabeon=6noZSllCqeCuoq8pCW0jEQCu/KHBu5Ix&maincd=O&systemcd=#");
+//		p3 = a1.click();
+
 		System.out.println("Rent Page");
 		/* Thread.sleep(3_000);*/
 
@@ -46,19 +68,22 @@ public class HtmlUnitTest_09 {
       /*List<?> list;
       list= (List<?>)work.getByXPath("/table[@class='gridForm']/");//프레임내에 테이블 이름이 같은게 있기때문에 XPath로 찾는다.*/
 
-		HtmlElement son;
+//		HtmlElement son;
 //		son= (HtmlElement) page2.getByXPath("//table[@class='gridForm']/tbody/tr[@class='cssRowStyle']/td[2]").get(0);
 //		System.out.println(son.asText());
-		son = (HtmlElement) page2.getByXPath("//table[@class='gridForm']/tbody/tr[@class='cssRowStyle']/td[2]").get(0);
+//		son = (HtmlElement) page2.getByXPath("//table[@class='gridForm']/tbody/tr[@class='cssRowStyle']/td[2]").get(0);
 
-		HtmlAnchor a = (HtmlAnchor)page2.getElementById("gv건물목록_ctl02_btnSelect");
-		HtmlPage pp = a.click();
-		System.out.println(pp.asText());
+
+//		HtmlAnchor a = p3.getAnchorByHref("javascript:__doPostBack('gv건물목록$ctl02$btnSelect','')");
+//		System.out.println("a " + a.asXml());
+//		HtmlPage pp = a.click();
+//		webClient.setAjaxController(new NicelyResynchronizingAjaxController());
+//		System.out.println("pp " + pp.asText());
 		/*list= (List<?>)work.getByXPath("//div[@id='upContents']/div[@id='divContainer']/div[@id='divBody']/div[@id='divBuildList']/table[@class='gridForm']")*/
 		/*List<DomElement> classs = page2.getElementsByName("tr");*/
 		/*   List<DomElement> trs = page2.getElementsByName("tr"); // -- 11개 있음
 		 *//*HtmlOption o = ((HtmlSelect)classs.get(0)).getOption(11);*//*
-
+it
       for(DomElement e : trs){
          *//*if(e.getAttribute("class").indexOf("row")>0){*//*
          List<HtmlElement> tds = e.getElementsByTagName("td");
@@ -131,7 +156,6 @@ public class HtmlUnitTest_09 {
 		//운동장
 /*         button10 = framePage1.getFirstByXPath("//a[@id='gv건물목록_ctl11_btnSelect']");//button '선택'
          framePage1 = button10.click();*/
-
 
 
 		webClient.close();
