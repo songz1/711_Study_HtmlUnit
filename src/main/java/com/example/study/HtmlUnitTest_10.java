@@ -79,34 +79,23 @@ public class HtmlUnitTest_10 {
 		HtmlPage p01 = (HtmlPage) fw01.getEnclosedPage();
 		System.out.println("p01 " + p01.asXml());
 
-
-
-
-//		ScriptResult scriptResult = p2.executeJavaScript("SetMenu(arrMenu0, 0, __maincd)");
-//		System.out.println("scr " + scriptResult);
-//		Object result = p2.executeJavaScript("OnMenu(2);ExecuteProgram(2);").getJavaScriptResult();
-//		p2.getPage();
-//		System.out.println("result: " + result + "\n" + p2.getPage());
-
-
-
-//		for (final HtmlTableBody b1 : t1.getBodies()) {
-//			for (final HtmlTableRow row : b1.getRows()) {
-//				System.out.println("Found row");
-//				for (final HtmlTableCell cell : row.getCells()) {
-//					System.out.println("   Found cell: " + cell.asText());
-//				}
-//			}
-//		}
-
-
-//		System.out.println("d1 "+d1.getWholeText());
-//		System.out.println("s1 "+s1.getId());
-
-
-//		HtmlPage test = frame2(basic, mainPage);
-//		System.out.println(test.asXml());
-
+//		HtmlAnchor a0 = p01.getAnchorByHref("javascript:__doPostBack('gv건물목록$ctl02$btnSelect','')");
+//		HtmlPage test = a0.click();
+//		System.out.println("test " + test.asXml());
+		HtmlAnchor link = null;
+		List<HtmlAnchor> anchors = p01.getAnchors();
+		for (HtmlAnchor anchor : anchors) {
+			String str = anchor.getId();
+			System.out.println("&(*) " + str);
+			if (anchor.getId().equals("gv건물목록_ctl02_btnSelect")) {
+				System.out.println("input ");
+				link = anchor;
+			}
+		}
+		System.out.println("link: "+link);
+		HtmlPage test = link.click();
+		Thread.sleep(3_000);
+		System.out.println("test " + test.asXml());
 
 	}
 
@@ -139,36 +128,9 @@ public class HtmlUnitTest_10 {
 		p2 = menu0.click();
 		System.out.println("p22 " + p2.asXml());
 
-//		ScriptResult scriptResult = p2.executeJavaScript("OnMenu(2);");
-//		System.out.println("scr2 " + scriptResult);
-
 		HtmlAnchor menu2 = p2.getAnchorByText("[N]시설물대여 신청");
 		menu2.click();
 
 		return ;
 	}
-
-	/*
-	static HtmlPage menu(HtmlPage framePage3) throws Exception {
-		List<HtmlAnchor> anchors = framePage3.getAnchors();
-		HtmlAnchor link = null;
-		for (HtmlAnchor anchor : anchors) {
-			String str = anchor.asText();
-			System.out.println("** " + str);
-			if (anchor.asText().equals("웹서비스")) {
-				link = anchor;
-			}
-		}
-		HtmlPage webService = (HtmlPage) link.click().getEnclosingWindow().getTopWindow().getEnclosedPage();
-		anchors = webService.getAnchors();
-		for (HtmlAnchor anchor : anchors) {
-			String str = anchor.asText();
-			System.out.println("** " + str);
-			if (anchor.asText().equals("[N]시설물대여 신청")) {
-				link = anchor;
-			}
-		}
-		return (HtmlPage) link.click().getEnclosingWindow().getTopWindow().getEnclosedPage();
-	}
-	*/
 }
