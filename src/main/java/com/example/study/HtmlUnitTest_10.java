@@ -62,6 +62,7 @@ public class HtmlUnitTest_10 {
 
 		HtmlPage mainPage = loginForm.getInputByName("ibtnLogin").click();
 		System.out.println("main: " + mainPage.asXml());
+		System.out.println("mainURL: " + mainPage.getUrl());
 
 		HtmlElement frameset0 = mainPage.getBody();
 		DomNode node0 = frameset0.getLastChild().getPreviousSibling();
@@ -78,10 +79,8 @@ public class HtmlUnitTest_10 {
 		FrameWindow fw01 = (FrameWindow) fr01.getEnclosedWindow();
 		HtmlPage p01 = (HtmlPage) fw01.getEnclosedPage();
 		System.out.println("p01 " + p01.asXml());
+		System.out.println("URL01: "+p01.getUrl());
 
-//		HtmlAnchor a0 = p01.getAnchorByHref("javascript:__doPostBack('gv건물목록$ctl02$btnSelect','')");
-//		HtmlPage test = a0.click();
-//		System.out.println("test " + test.asXml());
 		HtmlAnchor link = null;
 		List<HtmlAnchor> anchors = p01.getAnchors();
 		for (HtmlAnchor anchor : anchors) {
