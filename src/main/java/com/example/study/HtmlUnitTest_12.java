@@ -90,10 +90,14 @@ public class HtmlUnitTest_12 {
 //		System.out.println("getTextContent: "+table.getTextContent());
 
 		String str = table.getCellAt(1, 1).asText();
-		str = str.substring(1, 5);
+		System.out.println("str1: " + str);
+		int idx = str.indexOf(")");
+		System.out.println("idx1: " + idx);
+		str = str.substring(1, idx);
 		String day = table.getCellAt(1, 2).asText();
-		int h = day.charAt(13)-'0';
-		int m = (day.charAt(20)-'0')+1;
+
+		int h = Integer.parseInt(day.substring(12, 14));
+		int m = Integer.parseInt(day.substring(19, 21)) +1;
 		LocalDate d = LocalDate.parse(day.substring(0, 10));
 
 		System.out.println("status: "+table.getCellAt(1, 0).asText());
